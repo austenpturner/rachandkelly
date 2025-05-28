@@ -1,0 +1,60 @@
+.scroller {
+  // border: 1px solid yellow;
+  height: 3.5rem;
+  min-width: 100%;
+  z-index: 999;
+}
+
+.scroller__inner {
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: nowrap;
+  width: fit-content;
+  padding: 0.2rem;
+}
+
+.scroll-text {
+  // font-family: "Tektur", sans-serif;
+  font-family: "Turret Road", sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.scroller--left {
+  grid-column-start: 1;
+  grid-row-start: 3;
+  align-self: end;
+  transform-origin: bottom left;
+  transform: rotate(-90deg) translateY(3.5rem);
+}
+
+.scroller__inner--left {
+  animation: scrollDown 15s linear infinite;
+}
+
+@keyframes scrollDown {
+  to {
+    transform: translate(calc(-50% - 5px));
+  }
+}
+
+.scroller--right {
+  grid-column-start: 3;
+  grid-row-start: 1;
+  transform-origin: bottom right;
+  transform: rotate(90deg) translateY(3.5rem);
+}
+
+.scroller__inner--right {
+  animation: scrollUp 30s linear infinite;
+}
+
+@keyframes scrollUp {
+  to {
+    transform: translate(calc(-50% - 5px));
+  }
+}

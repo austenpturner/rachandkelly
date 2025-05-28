@@ -1,0 +1,68 @@
+@use "./global/index" as *;
+
+main {
+  background-color: #bb1efa;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: center;
+  height: 100vh;
+}
+
+.container__photo {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  justify-items: center;
+  position: relative;
+  .rachandkelly {
+    border: 5px solid #e0fd22;
+    border-radius: 50%;
+    width: 50vw;
+    max-width: 40rem;
+    animation: rotateClockwise 4s linear infinite;
+    animation-play-state: paused;
+    &:hover {
+      animation-play-state: running;
+    }
+  }
+  .sparkles {
+    position: absolute;
+    top: -5rem;
+    right: -5rem;
+    width: 15rem;
+  }
+}
+
+@keyframes rotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.turntable {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  width: 20rem;
+}
+
+.container__alien-truck {
+  position: relative;
+  grid-column-start: 3;
+  grid-row-start: 3;
+  .alien {
+    position: absolute;
+    bottom: 13rem;
+    right: 3.5rem;
+    width: 12rem;
+  }
+  .monsterTruck {
+    position: absolute;
+    bottom: 3rem;
+    right: 1rem;
+    width: 20rem;
+  }
+}
