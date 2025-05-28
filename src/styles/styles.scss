@@ -9,6 +9,31 @@ main {
   height: 100vh;
 }
 
+.container__worm {
+  grid-column-start: 1;
+  grid-row-start: 3;
+  align-items: end;
+  .dancingWorm {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 5rem;
+    width: 16rem;
+    z-index: 999;
+  }
+  p {
+    background-color: #e0fd22;
+    color: rgb(65, 61, 61);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Tektur", sans-serif;
+    font-style: italic;
+    padding: 5px 10px;
+    position: absolute;
+    bottom: 1rem;
+    left: 20rem;
+  }
+}
+
 .container__photo {
   grid-column-start: 2;
   grid-row-start: 2;
@@ -23,6 +48,7 @@ main {
     animation-play-state: paused;
     &:hover {
       animation-play-state: running;
+      cursor: url("../images/worm.png"), pointer;
     }
   }
   .sparkles {

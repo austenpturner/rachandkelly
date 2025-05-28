@@ -3,28 +3,66 @@ import sparkles from "../images/sparkles.gif";
 import alien from "../images/dancingAlienGuy.gif";
 import MONSTERTRUCK from "../images/MONSTERTRUCK.gif";
 import rachandkelly from "../images/rachandkelly.jpg";
-import turntable from "../images/turntable.gif";
+import dancingWorm from "../images/dancingWorm.gif";
 import "../styles/styles.scss";
 import Scroller from "../components/scroller";
 
 const IndexPage = () => {
+  // const [coords, setCoords] = React.useState({ x: 0, y: 0 });
+  const [wormPosition, setWormPosition] = React.useState({ x: "", y: "" });
+  const [isDragging, setIsDragging] = React.useState(false);
+  const wormRef = React.useRef(null);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    e.preventDefault(); // Prevent default image dragging
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      setWormPosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [isDragging]);
+
   return (
-    <main>
+    <main onMouseMove={handleMouseMove}>
       <div className="container__photo">
         <img src={rachandkelly} alt="rachandkelly" className="rachandkelly" />
         <img src={sparkles} alt="sparkles" className="sparkles gif" />
       </div>
-      {/* <iframe
-        // style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/3DwQ7AH3xGD9h65ezslm6q?utm_source=generator"
-        width="100%"
-        height="352"
-        // frameBorder="0"
-        // allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-      ></iframe> */}
-      {/* <img src={turntable} alt="turn table gif" className="turntable" /> */}
+      <div className="container__worm">
+        <img
+          style={{
+            top: `${wormPosition.y}px`,
+            left: `${wormPosition.x}px`,
+            cursor: "grab",
+          }}
+          src={dancingWorm}
+          alt="dancing worm gif"
+          className="dancingWorm"
+          ref={wormRef}
+          onMouseDown={handleMouseDown}
+          draggable={false}
+        />
+        <p>{isDragging ? "yeehaw" : "move that worm, sister"}</p>
+      </div>
+
       <div className="container__alien-truck">
         <img
           src={MONSTERTRUCK}
